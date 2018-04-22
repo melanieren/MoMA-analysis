@@ -1,6 +1,7 @@
 # MoMA-analysis
 
-A visual analysis of data collected from the Museum of Modern Art (MoMA). 
+A visual analysis of data collected from the Museum of Modern Art (MoMA).   
+Data retrieved from [Kaggle](https://www.kaggle.com/momanyc/museum-collection/data).
 
 ## Data
 
