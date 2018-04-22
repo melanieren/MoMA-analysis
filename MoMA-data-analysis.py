@@ -92,10 +92,11 @@ for index, row in df_artists.iterrows() :
 # Graph the proportion of continents represented by the 20 most common nationalities of the artists at the MoMA
 labels = df_artists['Continent'].value_counts().index
 sizes = df_artists['Continent'].value_counts().values
-colors = ['gold', 'lightcoral', 'lightskyblue', 'red', 'blue']
-plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', shadow=False, startangle=140)
+colors = ['gold', 'lightcoral', 'lightskyblue', 'mediumslateblue', 'firebrick']
+plt.pie(sizes, colors=colors, autopct='%1.1f%%', pctdistance=1.2, shadow=False, startangle=140)
 plt.axis('equal')
 plt.suptitle('Top 20 Most Common Artist Nationalities by Continent', fontsize=14, fontweight='bold')
+plt.legend(labels,loc=4)
 plt.show()
 
 
@@ -107,10 +108,10 @@ acquisitions_sorted = acquisitions.sort_index()
 
 # Show the data as a time series
 acquisitions_sorted_cumsum = acquisitions_sorted.cumsum()
-ts = acquisitions_sorted_cumsum.plot(title='Total Number of Pieces Acquired by the MoMA Over Time')
+ts = acquisitions_sorted_cumsum.plot()
+ts.set_title('Total Number of Artworks Acquired by the MoMA Over Time', fontsize=14, fontweight='bold')
 ts.set_xlabel("Year")
 ts.set_ylabel("Total Number of Artworks Acquired")
-
 
             
 
