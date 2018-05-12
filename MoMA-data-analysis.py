@@ -3,18 +3,17 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-artworks = pd.read_csv('data/artworks.csv')
-print(artworks.shape)
-print(artworks.head())
+df_artworks = pd.read_csv('data/artworks.csv')
+print(df_artworks.shape)
+print(df_artworks.head())
 
-artists = pd.read_csv('data/artists.csv')
-print(artists.shape)
-print(artists.head())
+df_artists = pd.read_csv('data/artists.csv')
+print(df_artists.shape)
+print(df_artists.head())
 
 
 # 1. Artists with most pieces on display
 # Count the number of pieces each artist has on display and show the top 20 artists
-df_artworks = pd.DataFrame(artworks)
 print(df_artworks['Name'].value_counts().head(20))
 
 # Use matplotlib to create a bar graph to display the 20 artists with the most pieces on display 
@@ -28,7 +27,6 @@ plt.show()
 
 # 2. Proportion of male to female artists with pieces on display 
 # Find the proportion of male to female artists who have works on display at the MoMA
-df_artists = pd.DataFrame(artists)
 print(df_artists['Gender'].value_counts())
 
 # Clean up missing values and capitalization inconsistencies in the artist data
@@ -36,7 +34,7 @@ df_artists['Gender'].replace('male', 'Male', inplace=True)
 df_artists['Gender'].replace(np.nan, 'Unknown', inplace=True)
 
 # Check that all artists have been accounted for
-print(sum(df_artists['Gender'].value_counts()) == artists.shape[0])
+print(sum(df_artists['Gender'].value_counts()) == df_artists.shape[0])
 
 # Graph the proportion of male to female artists on display
 labels = df_artists['Gender'].value_counts().index
