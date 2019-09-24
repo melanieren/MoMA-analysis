@@ -36,7 +36,7 @@ df_artists['Gender'].replace(np.nan, 'Unknown', inplace=True)
 # Check that all artists have been accounted for
 print(sum(df_artists['Gender'].value_counts()) == df_artists.shape[0])
 
-# Graph the proportion of male to female artists on display
+# Graph the proportion of male to female artists
 labels = df_artists['Gender'].value_counts().index
 sizes = df_artists['Gender'].value_counts().values
 colors = ['gold', 'lightcoral', 'lightskyblue']
@@ -58,28 +58,20 @@ plt.show()
 # Classify the 20 most common nationalities of the artists by continent 
 df_artists['Continent'] = np.nan
 
+north_america = ['American', 'Canadian', 'Mexican']
+south_america = ['Brazilian', 'Argentine']
+europe = ['German', 'French', 'British', 'Italian', 'Swiss', 'Dutch', 'Austrian', 
+            'Russian', 'Spanish', 'Polish', 'Danish', 'Belgian']
+asia = ['Japanese']
+
 def classify_nationality(row_index) :
-    if (df_artists.loc[row_index,'Nationality'] == 'American' or
-        df_artists.loc[row_index,'Nationality'] == 'Canadian' or
-        df_artists.loc[row_index,'Nationality'] == 'Mexican') :
+    if df_artists.loc[row_index,'Nationality'] in north_america:
         df_artists.loc[row_index, 'Continent'] = 'North America'
-    elif (df_artists.loc[row_index,'Nationality'] == 'Brazilian' or
-        df_artists.loc[row_index,'Nationality'] == 'Argentine') :
+    elif df_artists.loc[row_index,'Nationality'] in south_america:
         df_artists.loc[row_index, 'Continent'] = 'South America'
-    elif (df_artists.loc[row_index,'Nationality'] == 'German' or
-        df_artists.loc[row_index,'Nationality'] == 'French' or
-        df_artists.loc[row_index,'Nationality'] == 'British' or
-        df_artists.loc[row_index,'Nationality'] == 'Italian' or
-        df_artists.loc[row_index,'Nationality'] == 'Swiss' or
-        df_artists.loc[row_index,'Nationality'] == 'Dutch' or
-        df_artists.loc[row_index,'Nationality'] == 'Austrian' or
-        df_artists.loc[row_index,'Nationality'] == 'Russian' or
-        df_artists.loc[row_index,'Nationality'] == 'Spanish' or
-        df_artists.loc[row_index,'Nationality'] == 'Polish' or
-        df_artists.loc[row_index,'Nationality'] == 'Danish' or
-        df_artists.loc[row_index,'Nationality'] == 'Belgian') :
+    elif df_artists.loc[row_index,'Nationality'] in europe:
         df_artists.loc[row_index, 'Continent'] = 'Europe'
-    elif (df_artists.loc[row_index,'Nationality'] == 'Japanese') :
+    elif df_artists.loc[row_index,'Nationality'] in asia:
         df_artists.loc[row_index, 'Continent'] = 'Asia'
     elif (df_artists.loc[row_index,'Nationality'] == 'Nationality unknown') :
         df_artists.loc[row_index, 'Continent'] = 'Unknown'
